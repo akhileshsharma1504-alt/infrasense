@@ -1,0 +1,30 @@
+trigger:
+- main
+
+pool:
+  name: Selfhostedagent
+
+steps:
+
+# 1. Checkout GitHub Repository
+- checkout: self
+
+# 2. Check Terraform Installation
+- powershell: |
+    terraform version
+  displayName: 'Check Terraform Version'
+
+# 3. Terraform Init
+- powershell: |
+    terraform init
+  displayName: 'Terraform Init'
+
+# 4. Terraform Validate
+- powershell: |
+    terraform validate
+  displayName: 'Terraform Validate'
+
+# 5. Terraform Plan
+- powershell: |
+    terraform plan
+  displayName: 'Terraform Plan'
